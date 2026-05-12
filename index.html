@@ -32,6 +32,12 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -140,6 +146,7 @@
             font-size: 14px;
             color: var(--accent);
             display: inline-block;
+            margin-right: 5px;
         }
 
         .nav-links-wrapper {
@@ -814,36 +821,44 @@
             /* Services Mobile */
             .service-card { padding: 30px 20px; }
 
-            /* Gallery Mobile - Scroll horizontal instead of huge grid */
+            /* Gallery Mobile - Full width scroll */
             .gallery-grid { 
                 display: flex; 
                 overflow-x: auto; 
                 gap: 15px; 
-                padding-bottom: 20px; 
+                padding: 0 20px 20px 20px; 
+                margin: 0 -20px;
                 scroll-snap-type: x mandatory;
                 grid-auto-rows: unset;
+                -webkit-overflow-scrolling: touch;
             }
             .gallery-item { 
-                min-width: 80%; 
-                height: 300px; 
+                min-width: 280px; 
+                width: 80%;
+                height: 250px; 
                 flex-shrink: 0; 
                 scroll-snap-align: center;
                 grid-column: auto !important;
                 grid-row: auto !important;
+                border-radius: 4px;
             }
 
-            /* Videos Mobile - Scroll horizontal */
+            /* Videos Mobile - Full width scroll */
             .video-grid { 
                 display: flex; 
                 overflow-x: auto; 
                 gap: 15px; 
-                padding-bottom: 20px;
+                padding: 0 20px 20px 20px;
+                margin: 0 -20px;
                 scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
             }
             .video-wrapper { 
-                min-width: 85%; 
+                min-width: 280px;
+                width: 85%; 
                 flex-shrink: 0; 
                 scroll-snap-align: center;
+                border-radius: 4px;
             }
 
             /* Footer Mobile */
