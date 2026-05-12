@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VILNOVATION | Prémium Villanyszerelés & Okosotthonok</title>
+    <meta name="description" content="VILNOVATION - Prémium villanyszerelő Kaposváron és a Balaton környékén. Új hálózatok, okosotthonok és gyors hibaelhárítás apa-fia szakértő csapattól.">
+    <meta name="keywords" content="villanyszerelő Kaposvár, villanyszerelő Balaton, villanyszerelő a közelben, VILNOVATION, okosotthon telepítés">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #FFFFFF;
+            --surface: #F8F9FA;
+            --surface-dark: #0A192F;
+            --navy: #0A192F;
+            --sand: #B4A594; 
+            --accent: #B4A594; 
+            --dark: #020617;
+            --muted: #64748B;
+            --border: rgba(10, 25, 47, 0.12);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--dark);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        .tech-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.4;
+            animation: grid-move 60s linear infinite;
+        }
+
+        @keyframes grid-move {
+            from { background-position: 0 0; }
+            to { background-position: 500px 500px; }
+        }
+
+        h1, h2, h3, .display-font {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--navy);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            padding: 120px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        section.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--navy);
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: '■';
+            font-size: 14px;
+            color: var(--accent);
+            display: inline-block;
+        }
+
+        .nav-links-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-phone {
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-btn {
+            background: var(--navy);
+            color: white !important;
+            padding: 12px 28px;
+            border-radius: 2px;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .cta-btn:hover {
+            background: var(--blue);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Nav Toggle */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--navy);
+            z-index: 1001;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            transform: translateY(-100%);
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+            background: var(--surface-dark);
+            color: white;
+        }
+
+        .hero h1 { color: white; }
+        .hero p { color: rgba(255, 255, 255, 0.7); }
+
+        .hero .tech-grid {
+            opacity: 0.1;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 0;
+            align-items: stretch;
+            margin: 0 -40px; /* Offset container padding for edge-to-edge */
+        }
+
+        .hero-content {
+            padding: 100px 40px 100px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(48px, 6vw, 84px);
+            margin-bottom: 24px;
+        }
+
+        .hero-content p {
+            font-size: 22px;
+            color: var(--muted);
+            margin-bottom: 48px;
+            max-width: 600px;
+            border-left: 3px solid var(--accent);
+            padding-left: 24px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .secondary-btn {
+            border: 2px solid var(--navy);
+            padding: 16px 36px;
+            border-radius: 2px;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .secondary-btn:hover {
+            background: var(--navy);
+            color: white;
+        }
+
+        .hero-image-container {
+            height: 85vh;
+            min-height: 700px;
+            background: var(--surface);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, var(--navy) 0%, transparent 35%),
+                        linear-gradient(to bottom, var(--navy) 0%, transparent 20%);
+            z-index: 2;
+        }
+
+        .hero-image-container::after {
+            content: 'PROJECT_ID: VN-2025-01 // COORDS: 46.3594° N, 17.7967° E';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            color: white;
+            font-size: 10px;
+            font-family: monospace;
+            opacity: 0.4;
+            letter-spacing: 2px;
+            z-index: 3;
+        }
+
+        /* Scanline Effect */
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 50%,
+                rgba(255, 255, 255, 0.02) 50%
+            );
+            background-size: 100% 4px;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- Social Proof --- */
+        .hero-social-proof {
+            margin-top: 60px;
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            color: white;
+            opacity: 0.65;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 500;
+        }
+
+        .hero-social-proof .stars {
+            color: #E8B84B;
+            letter-spacing: 2px;
+            opacity: 1;
+        }
+
+        .hero-social-proof .sep {
+            opacity: 0.3;
+            margin: 0 5px;
+        }
+
+        /* --- Trust Bar --- */
+        .trust-bar {
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .trust-signals {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .trust-signal {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--navy);
+        }
+
+        .trust-signal span { color: var(--accent); }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 40px;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            font-size: 15px;
+            margin-bottom: 20px;
+            color: var(--muted);
+        }
+
+        .testimonial-author {
+            font-weight: 800;
+            font-size: 14px;
+            color: var(--navy);
+            text-transform: uppercase;
+            display: block;
+        }
+
+        .stars {
+            color: #FFB800;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        /* --- Stats Band --- */
+        .stats {
+            background: var(--surface-dark);
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .stats h3 { color: white; }
+        .stats .tech-grid { opacity: 0.1; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .stat-item h3 {
+            font-size: 72px;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--muted);
+        }
+
+        /* --- About Section --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .about-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .portrait {
+            aspect-ratio: 4/5;
+            background: var(--surface-dark);
+            border-radius: 2px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border: 1px solid var(--border);
+        }
+
+        .portrait::after {
+            content: 'SCALE 1:1.0';
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: var(--accent);
+            color: white;
+            padding: 2px 8px;
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .portrait::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: -5px;
+            height: calc(100% - 20px);
+            width: 1px;
+            background: var(--accent);
+        }
+
+        .about-content h2 { font-size: 48px; margin-bottom: 30px; }
+        .about-content p { font-size: 18px; margin-bottom: 20px; color: var(--muted); }
+
+        /* --- Services --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 50px 40px;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 0;
+            background: var(--navy);
+            transition: height 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            height: 100%;
+        }
+
+        .service-card:hover {
+            box-shadow: 20px 20px 0px var(--accent);
+            transform: translate(-10px, -10px);
+        }
+
+        .s-num {
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .service-card h3 { font-size: 24px; margin-bottom: 15px; }
+        .service-card p { font-size: 15px; color: var(--muted); margin-bottom: 30px; }
+        .service-link { font-weight: 700; color: var(--navy); border-bottom: 2px solid var(--accent); padding-bottom: 5px; }
+
+        /* --- Service Area --- */
+        .area-section {
+            background: var(--surface);
+            position: relative;
+        }
+
+        .area-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .area-list li {
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+        }
+
+        .area-list li::before {
+            content: '';
+            width: 12px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .map-placeholder {
+            height: 500px;
+            background: white;
+            border: 1px solid var(--border);
+        }
+
+        /* --- Gallery --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 300px;
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            background: var(--surface-2);
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .gallery-item.wide { grid-column: span 2; }
+        .gallery-item.tall { grid-row: span 2; }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 25, 47, 0.8);
+            color: white;
+            padding: 15px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+        }
+
+        /* --- Contact --- */
+        .contact { padding: 0; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; }
+
+        .contact-left {
+            background: var(--navy);
+            color: white;
+            padding: 100px;
+        }
+
+        .contact-left h2 { color: white; font-size: 56px; margin-bottom: 40px; }
+        .contact-info { margin-bottom: 60px; }
+        .contact-info a { display: block; font-size: 28px; font-weight: 700; margin-bottom: 20px; }
+        
+        .contact-trust { margin-bottom: 60px; }
+        .contact-trust p { margin-bottom: 10px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+        
+        .contact-social { display: flex; gap: 30px; }
+        .contact-social a { font-weight: 700; text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.2); padding: 10px 20px; font-size: 14px; }
+        .contact-social a:hover { background: white; color: var(--navy); }
+
+        .contact-right {
+            background: white;
+            padding: 100px;
+        }
+
+        .form-group { margin-bottom: 30px; }
+        .form-group label { display: block; font-weight: 700; margin-bottom: 10px; font-size: 13px; text-transform: uppercase; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            font-family: inherit;
+        }
+
+        .submit-btn {
+            background: var(--navy);
+            color: white;
+            width: 100%;
+            padding: 20px;
+            font-weight: 800;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .success-msg {
+            display: none;
+            padding: 20px;
+            background: #E8F5E9;
+            color: #2E7D32;
+            margin-top: 20px;
+            font-weight: 700;
+        }
+
+        /* --- Videos Section --- */
+        .videos-section {
+            background: #EEF2F9;
+            padding: 120px 0 200px 0;
+            position: relative;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            aspect-ratio: 9/16;
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0; left: 0;
+        }
+
+        .video-cta {
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 40px;
+        }
+
+        .video-cta p {
+            font-size: 18px;
+            color: var(--muted);
+            margin-bottom: 30px;
+        }
+
+        .social-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-btn {
+            padding: 15px 30px;
+            border: 2px solid var(--navy);
+            color: var(--navy);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .social-btn:hover {
+            background: var(--navy);
+            color: white;
+        }
+
+        @media (max-width: 1100px) {
+            .video-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .video-grid { grid-template-columns: 1fr; }
+        }
+
+        /* --- Footer --- */
+        footer { 
+            padding: 35px 0; 
+            text-align: center; 
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+        }
+        footer .container {
+            width: 100%;
+            padding-top: 10px; /* Lejjebb toljuk egy kicsit az optikai középre igazításhoz */
+        }
+        .footer-nav { 
+            display: flex; 
+            justify-content: center; 
+            gap: 40px; 
+            margin: 0 0 12px 0; 
+            font-weight: 700; 
+            font-size: 18px; 
+        }
+        .copyright { font-size: 15px; color: var(--muted); }
+
+        /* --- Utilities & Responsive --- */
+        .eyebrow {
+            color: var(--accent);
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 13px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        @media (max-width: 1100px) {
+            .hero-grid, .about-grid, .area-grid, .contact-grid { grid-template-columns: 1fr; gap: 60px; }
+            .testimonials, .services-grid, .stats-grid { grid-template-columns: 1fr; }
+            .contact-left, .contact-right { padding: 60px 40px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links-wrapper, .nav-links, .nav-phone, nav .cta-btn { display: none; }
+            .nav-toggle { display: block; }
+            section { padding: 80px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <div class="tech-grid"></div>
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">VILNOVATION</a>
+            
+            <div class="nav-links-wrapper">
+                <ul class="nav-links">
+                    <li><a href="#about">Rólunk</a></li>
+                    <li><a href="#services">Szolgáltatások</a></li>
+                    <li><a href="#area">Helyszínek</a></li>
+                    <li><a href="#gallery">Galéria</a></li>
+                    <li><a href="#videos">Videók</a></li>
+                </ul>
+                <a href="tel:+36709428208" class="nav-phone">+36 70 942 8208</a>
+                <a href="#contact" class="cta-btn">Ajánlatkérés</a>
+            </div>
+
+            <button class="nav-toggle" id="menu-open">☰</button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button id="menu-close" style="position: absolute; top: 30px; right: 40px; font-size: 32px; background: none; border: none;">✕</button>
+        <a href="#about">Rólunk</a>
+        <a href="#services">Szolgáltatások</a>
+        <a href="#area">Helyszínek</a>
+        <a href="#gallery">Galéria</a>
+        <a href="#videos">Videók</a>
+        <a href="tel:+36709428208" style="font-weight: 700;">+36 70 942 8208</a>
+        <a href="#contact" class="cta-btn">Ajánlatkérés</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero reveal" id="home">
+        <div class="tech-grid"></div>
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Művészi precizitás az elektromos hálózatokban.</h1>
+                    <p>Kaposvártól a Balatonig — 48 órán belül kiszállunk.</p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="cta-btn" style="padding: 18px 48px; font-size: 15px;">Ajánlatkérés</a>
+                        <a href="#services" class="secondary-btn" style="border-color: white; color: white;">Szolgáltatásaink</a>
+                    </div>
+                    <div class="hero-social-proof">
+                        <span class="stars">★★★★★</span>
+                        <span>Több mint 300 elégedett ügyfél</span>
+                        <span class="sep">·</span>
+                        <span>Kaposvár & Balaton régió</span>
+                        <span class="sep">·</span>
+                        <span>15+ év tapasztalat</span>
+                    </div>
+                </div>
+                <!-- HERO FOTÓ -->
+                <div class="hero-image-container">
+                    <div class="scanline"></div>
+                    <img src="assets/images/475148353_646237887963810_5927433577620816419_n.jpg" alt="Villnovation munka folyamat közben">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+        <div class="container">
+            <div class="trust-signals">
+                <div class="trust-signal"><span>⚡</span> E.ON Regisztrált Szerelő</div>
+                <div class="trust-signal"><span>✔</span> Minősített villanyszerelő</div>
+                <div class="trust-signal"><span>✔</span> Felelősségbiztosítással rendelkezünk</div>
+                <div class="trust-signal"><span>✔</span> Átlátható árazás – nincs rejtett költség</div>
+                <div class="trust-signal"><span>✔</span> Minden munka dokumentálva átadva</div>
+            </div>
+            <div class="testimonials">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Gyorsak, pontosak és rendkívül precízek. A balatoni nyaralónk teljes hálózatát ők szerelték — tökéletes munkát végeztek."</p>
+                    <span class="testimonial-author">Kovács Péter, Balatonfüred</span>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Hívtam őket egy sürgős hibához, két órán belül ott voltak. Profi csapat, ajánlom mindenkinek."</p>
+                    <span class="testimonial-author">Németh Ágnes, Kaposvár</span>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Okosotthon rendszert telepítettek nálunk, mindent elmagyaráztak, utána is elérhetők voltak. Kiváló!"</p>
+                    <span class="testimonial-author">Horváth Gábor, Marcali</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Band -->
+    <section class="stats reveal">
+        <div class="tech-grid"></div>
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>15+</h3>
+                    <p>Év szakmai tapasztalat</p>
+                </div>
+                <div class="stat-item">
+                    <h3>300+</h3>
+                    <p>Sikeres átadás</p>
+                </div>
+                <div class="stat-item">
+                    <h3>3</h3>
+                    <p>Lefedett vármegye</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Minőségi garancia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="reveal">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-images">
+                    <!-- ROZINKA LAJOS SR. FOTÓ -->
+                    <div class="portrait" style="background-image: url('assets/images/475203308_646237507963848_114024324327397947_n.jpg');"></div>
+                    <!-- ROZINKA LAJOS JR. FOTÓ -->
+                    <div class="portrait" style="margin-top: 40px; background-image: url('assets/images/475363876_646237561297176_4749167250147264111_n.jpg');"></div>
+                </div>
+                <div class="about-content">
+                    <span class="eyebrow">Hagyomány és Haladás</span>
+                    <h2>Apa és fia, egy közös vízió mentén.</h2>
+                    <p>A Villnovation története több évtizeddel ezelőtt kezdődött, amikor idősebb Rozinka Lajos elkötelezte magát a villamosipar iránt. Ma ez a szenvedély két generáció tudását egyesíti: a tapasztalatból fakadó bölcsességet és a modern technológia iránti fogékonyságot.</p>
+                    <p>Számunkra minden projekt egy bizalmi kapcsolat. Legyen szó egy családi ház teljes kábelezéséről vagy egy komplex okosotthon integrációjáról, ugyanazzal a kézműves alapossággal és mérnöki pontossággal dolgozunk.</p>
+                    
+                    <!-- FACEBOOK COVER AS CREDIBILITY ASSET -->
+                    <div style="margin-top: 40px; border: 1px solid var(--border); padding: 10px; background: white; max-width: 400px;">
+                        <img src="481199518_674214408499491_6216705004895289583_n.jpg" alt="VILNOVATION E.ON Regisztrált Szerelő" style="width: 100%; height: auto; display: block;">
+                        <p style="font-size: 12px; margin: 10px 0 0 0; text-align: center; font-weight: 700; color: var(--navy);">E.ON Regisztrált Szerelő vállalkozás</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="reveal" style="position: relative; overflow: hidden;">
+        <div class="tech-grid" style="opacity: 0.05;"></div>
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 80px;">
+                <span class="eyebrow" style="display: block; margin-bottom: 10px;">Mérnöki Színvonal</span>
+                <h2>Szolgáltatásaink</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="s-num">01</span>
+                    <h3>Új hálózatok kiépítése</h3>
+                    <p>Újépítésű ingatlanok teljes körű villamos kivitelezése a tervezéstől a kulcsrakész átadásig.</p>
+                    <a href="#contact" class="service-link">Érdeklődjön →</a>
+                </div>
+                <div class="service-card">
+                    <span class="s-num">02</span>
+                    <h3>Infra-fűtés telepítése</h3>
+                    <p>Infravörös fűtési rendszerek szakszerű tervezése és kiépítése modern, energiatakarékos technológiával.</p>
+                    <a href="#contact" class="service-link">Érdeklődjön →</a>
+                </div>
+                <div class="service-card">
+                    <span class="s-num">03</span>
+                    <h3>Egyedi LED világítás</h3>
+                    <p>Bespoke LED világítási megoldások tervezése és kivitelezése, hangulatvilágítástól a funkcionális fényekig.</p>
+                    <a href="#contact" class="service-link">Érdeklődjön →</a>
+                </div>
+                <div class="service-card">
+                    <span class="s-num">04</span>
+                    <h3>Intelligens Otthonok</h3>
+                    <p>Loxone, KNX és egyéb okosotthon rendszerek tervezése és professzionális telepítése.</p>
+                    <a href="#contact" class="service-link">Érdeklődjön →</a>
+                </div>
+                <div class="service-card">
+                    <span class="s-num">05</span>
+                    <h3>Ipari Kivitelezés</h3>
+                    <p>Gyárak, üzemek és irodaházak villamos infrastruktúrájának kiépítése és karbantartása.</p>
+                    <a href="#contact" class="service-link">Érdeklődjön →</a>
+                </div>
+                <div class="service-card">
+                    <span class="s-num">06</span>
+                    <h3>Zöld Energia & EV</h3>
+                    <p>Napelemes rendszerek csatlakoztatása és elektromos autó töltőállomások szakszerű telepítése.</p>
+                    <a href="#contact" class="service-link">Érdeklődjön →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Area -->
+    <section id="area" class="area-section reveal">
+        <div class="tech-grid"></div>
+        <div class="container">
+            <div class="area-grid">
+                <div>
+                    <h2>Helyszíni jelenlétünk</h2>
+                    <p style="font-size: 20px; margin-bottom: 40px;">Központunk Kaposváron, munkaterületünk a teljes Dél-Dunántúlon.</p>
+                    <ul class="area-list">
+                        <li>Kaposvár és agglomerációja</li>
+                        <li>A Balaton teljes északi és déli partja</li>
+                        <li>Somogy vármegye teljes területe</li>
+                        <li>Egyedi megállapodás alapján országos kiszállás</li>
+                    </ul>
+                </div>
+                <div class="map-placeholder">
+                    <!-- DEKORATÍV TÉRKÉP PLACEHOLDER -->
+                    <div style="width:100%; height:100%; background: var(--surface-dark); display:flex; flex-direction: column; align-items:center; justify-content:center; color: white; position: relative; overflow: hidden;">
+                        <div class="tech-grid" style="opacity: 0.2;"></div>
+                        <div style="font-weight:900; font-size: 24px; letter-spacing: 2px; color: var(--accent);">DÉL-DUNÁNTÚL</div>
+                        <div style="font-size: 12px; opacity: 0.6; margin-top: 10px;">OPERÁCIÓS TERÜLET</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="reveal">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 80px;">
+                <h2>Portfólió</h2>
+            </div>
+            <div class="gallery-grid">
+                <!-- FOTÓ: Siófok hálózatépítés 2024 -->
+                <div class="gallery-item tall" style="background-image: url('assets/images/468089586_580834754498942_7115032190325010046_n.jpg');">
+                    <div class="gallery-caption">Siófok — Teljes hálózatépítés, 2024</div>
+                </div>
+                <!-- FOTÓ: Kaposvár okosotthon 2024 -->
+                <div class="gallery-item" style="background-image: url('assets/images/468217799_580833644499053_4799558643009039937_n.jpg');">
+                    <div class="gallery-caption">Kaposvár — Okosotthon rendszer, 2024</div>
+                </div>
+                <!-- FOTÓ: Fonyód ipari kivitelezés 2023 -->
+                <div class="gallery-item" style="background-image: url('assets/images/469511748_591152076800543_5027538082238487907_n.jpg');">
+                    <div class="gallery-caption">Fonyód — Ipari kivitelezés, 2023</div>
+                </div>
+                <!-- FOTÓ: Marcali rendszerfelújítás 2023 -->
+                <div class="gallery-item wide" style="background-image: url('assets/images/481481867_669679818952950_3377607084608762283_n.jpg');">
+                    <div class="gallery-caption">Marcali — Rendszerfelújítás, 2023</div>
+                </div>
+                <!-- FOTÓ: Balatonfüred EV töltő 2024 -->
+                <div class="gallery-item" style="background-image: url('assets/images/553172336_832098649377732_6735637404599228941_n.jpg');">
+                    <div class="gallery-caption">Balatonfüred — EV töltő telepítés, 2024</div>
+                </div>
+                <!-- FOTÓ: Kaposvár új ház 2024 -->
+                <div class="gallery-item" style="background-image: url('assets/images/554799835_832098549377742_6601007318715050596_n.jpg');">
+                    <div class="gallery-caption">Kaposvár — Új építésű ház, 2024</div>
+                </div>
+                <!-- ÚJ KÉPEK -->
+                <div class="gallery-item" style="background-image: url('assets/images/480252368_662223739698558_3274679270067677248_n.jpg');">
+                    <div class="gallery-caption">Siófok — Elosztó szekrény, 2024</div>
+                </div>
+                <div class="gallery-item" style="background-image: url('assets/images/480254018_662223799698552_8765920394333522710_n.jpg');">
+                    <div class="gallery-caption">Kaposvár — Világítástechnika, 2024</div>
+                </div>
+                <div class="gallery-item" style="background-image: url('assets/images/598065387_897217919532471_6187678730126588216_n.jpg');">
+                    <div class="gallery-caption">Balatonlelle — Modern konyha, 2023</div>
+                </div>
+                <div class="gallery-item" style="background-image: url('assets/images/480618261_662223736365225_5512096772629677970_n.jpg');">
+                    <div class="gallery-caption">Marcali — Ipari hálózat, 2024</div>
+                </div>
+                <div class="gallery-item wide" style="background-image: url('assets/images/481270127_673359085251690_24699599451558930_n.jpg');">
+                    <div class="gallery-caption">Siófok — Világításvezérlés, 2024</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section id="videos" class="videos-section reveal">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 80px;">
+                <span class="eyebrow">Munkáink élőben</span>
+                <h2>Videós bemutatók</h2>
+                <p style="font-size: 20px; color: var(--muted); max-width: 700px; margin: 20px auto 0;">Nézze meg hogyan dolgozunk — minden részletben a precizitás a vezérelv.</p>
+            </div>
+            
+            <div class="video-grid">
+                <!-- Videó 1 -->
+                <div class="video-wrapper">
+                    <iframe
+                        src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FVillnovation%2Fvideos%2F4516639085322193%2F&show_text=false&width=500&mute=1"
+                        width="500"
+                        height="800"
+                        style="border:none;overflow:hidden"
+                        scrolling="no"
+                        frameborder="0"
+                        allowfullscreen="true"
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                    </iframe>
+                </div>
+                <!-- Videó 2 -->
+                <div class="video-wrapper">
+                    <iframe
+                        src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FVillnovation%2Fvideos%2F3252043421670994%2F&show_text=false&width=500&mute=1"
+                        width="500"
+                        height="800"
+                        style="border:none;overflow:hidden"
+                        scrolling="no"
+                        frameborder="0"
+                        allowfullscreen="true"
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                    </iframe>
+                </div>
+                <!-- Videó 3 -->
+                <div class="video-wrapper">
+                    <iframe
+                        src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FVillnovation%2Fvideos%2F867693276076988%2F&show_text=false&width=500&mute=1"
+                        width="500"
+                        height="800"
+                        style="border:none;overflow:hidden"
+                        scrolling="no"
+                        frameborder="0"
+                        allowfullscreen="true"
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="video-cta">
+                <p>Még több munkánkat az Instagramon és Facebookon követheti.</p>
+                <div class="social-btns">
+                    <a href="https://www.facebook.com/Villnovation" target="_blank" class="social-btn">Facebook oldal →</a>
+                    <a href="https://www.instagram.com/villnovation/" target="_blank" class="social-btn">Instagram →</a>
+                </div>
+            </div>
+        </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact reveal">
+        <div class="contact-grid">
+            <div class="contact-left">
+                <h2>Kezdjük el a közös munkát</h2>
+                <div class="contact-info">
+                    <a href="tel:+36709428208">+36 70 942 8208</a>
+                    <a href="tel:+36709428431" style="margin-top: -10px;">+36 70 942 8431</a>
+                    <a href="mailto:villnovation@gmail.com" style="font-size: 20px; margin-top: 10px;">villnovation@gmail.com</a>
+                </div>
+                <div class="contact-trust">
+                    <p><span>✔</span> E.ON Regisztrált Szerelő</p>
+                    <p><span>✔</span> Átlátható árazás</p>
+                    <p><span>✔</span> Nincs rejtett költség</p>
+                    <p><span>✔</span> Minden munka dokumentálva</p>
+                </div>
+                <div class="contact-social">
+                    <a href="https://www.facebook.com/Villnovation" target="_blank">Facebook</a>
+                    <a href="https://www.instagram.com/villnovation/" target="_blank">Instagram</a>
+                </div>
+            </div>
+            <div class="contact-right">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Neve</label>
+                        <input type="text" id="name" required placeholder="Példa János">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefonszám</label>
+                        <input type="tel" id="phone" required placeholder="+36 30 123 4567">
+                    </div>
+                    <div class="form-group">
+                        <label for="loc">Munkavégzés helyszíne</label>
+                        <input type="text" id="loc" required placeholder="Város, utca">
+                    </div>
+                    <div class="form-group">
+                        <label for="msg">Miben segíthetünk?</label>
+                        <textarea id="msg" rows="5" required placeholder="Írja le röviden a feladatot..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Ajánlatot kérek</button>
+                    <div id="success-msg" class="success-msg">Köszönjük! Üzenetét megkaptuk, hamarosan jelentkezünk.</div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-nav">
+                <a href="#about">Rólunk</a>
+                <a href="#services">Szolgáltatások</a>
+                <a href="#area">Helyszínek</a>
+                <a href="#gallery">Galéria</a>
+            </div>
+            <p class="copyright">© 2025 VILNOVATION – Rozinka Lajos. Minden jog fenntartva. | Prémium Villanyszerelés Magyarországon</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const menuOpen = document.getElementById('menu-open');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuOpen.onclick = () => mobileMenu.classList.add('active');
+        menuClose.onclick = () => mobileMenu.classList.remove('active');
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.onclick = () => mobileMenu.classList.remove('active');
+        });
+
+        // Sticky Nav
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        // Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('reveal');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(s => observer.observe(s));
+
+        // Form
+        const form = document.getElementById('contact-form');
+        form.onsubmit = (e) => {
+            e.preventDefault();
+            document.getElementById('success-msg').style.display = 'block';
+            form.reset();
+            setTimeout(() => document.getElementById('success-msg').style.display = 'none', 5000);
+        };
+    </script>
+</body>
+</html>
