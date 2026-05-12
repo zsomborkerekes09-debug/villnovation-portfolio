@@ -834,7 +834,10 @@
                 max-width: 280px;
                 text-align: center;
             }
-            .hero-image-container { height: 45vh; min-height: 350px; }
+            .hero-image-container { height: 60vh; min-height: 450px; }
+            .hero-image-container img {
+                object-position: center;
+            }
             .hero-image-container::after {
                 font-size: 8px;
                 bottom: 10px;
@@ -848,9 +851,15 @@
             .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
             .stat-item h3 { font-size: 40px; }
 
-            /* Services Mobile */
-            .service-card { padding: 30px 20px; }
-            .services-grid { gap: 15px; }
+            /* Services Mobile - 2 columns as requested */
+            .service-card { padding: 25px 15px; }
+            .service-card h3 { font-size: 18px; margin-bottom: 10px; }
+            .service-card p { font-size: 13px; margin-bottom: 20px; line-height: 1.4; }
+            .services-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 12px; 
+            }
+            .service-link { font-size: 12px; }
 
             /* About Mobile - Fix overlapping portraits */
             .about-grid { gap: 40px; }
