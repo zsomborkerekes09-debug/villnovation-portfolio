@@ -796,7 +796,58 @@
         @media (max-width: 768px) {
             .nav-links-wrapper, .nav-links, .nav-phone, nav .cta-btn { display: none; }
             .nav-toggle { display: block; }
-            section { padding: 80px 0; }
+            section { padding: 60px 0; }
+            .container { padding: 0 20px; }
+
+            /* Hero Mobile */
+            .hero-grid { margin: 0; }
+            .hero-content { padding: 40px 20px; text-align: center; }
+            .hero-content h1 { font-size: 42px; }
+            .hero-content p { font-size: 18px; border-left: none; border-top: 3px solid var(--accent); padding-top: 20px; padding-left: 0; margin-bottom: 30px; }
+            .hero-actions { justify-content: center; flex-direction: column; }
+            .hero-image-container { height: 40vh; min-height: 300px; }
+
+            /* Stats Mobile */
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .stat-item h3 { font-size: 40px; }
+
+            /* Services Mobile */
+            .service-card { padding: 30px 20px; }
+
+            /* Gallery Mobile - Scroll horizontal instead of huge grid */
+            .gallery-grid { 
+                display: flex; 
+                overflow-x: auto; 
+                gap: 15px; 
+                padding-bottom: 20px; 
+                scroll-snap-type: x mandatory;
+                grid-auto-rows: unset;
+            }
+            .gallery-item { 
+                min-width: 80%; 
+                height: 300px; 
+                flex-shrink: 0; 
+                scroll-snap-align: center;
+                grid-column: auto !important;
+                grid-row: auto !important;
+            }
+
+            /* Videos Mobile - Scroll horizontal */
+            .video-grid { 
+                display: flex; 
+                overflow-x: auto; 
+                gap: 15px; 
+                padding-bottom: 20px;
+                scroll-snap-type: x mandatory;
+            }
+            .video-wrapper { 
+                min-width: 85%; 
+                flex-shrink: 0; 
+                scroll-snap-align: center;
+            }
+
+            /* Footer Mobile */
+            .footer-nav { flex-direction: column; gap: 15px; align-items: center; }
         }
     </style>
 </head>
